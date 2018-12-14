@@ -1,0 +1,6 @@
+- name: Install authconfig and vim
+  yum:
+    name:
+      - vim
+      - authconfig
+    state: present
