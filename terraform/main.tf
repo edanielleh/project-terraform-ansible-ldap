@@ -20,7 +20,13 @@ resource "google_compute_instance" "default" {
   machine_type = "${var.machine_type}"
   zone         = "${var.region}"
   project      = "${var.gcloud_compute_project_name}"
+  
+#runs on local once instance is running
+  provisioner "local-exec" "default" {
+    command = "echo ${google_compute_instance.default.network_interface.0.access_config.0.nat_ip} > ../ansible/hosts"
+  }
 
+#runs on instance once running
   metadata_startup_script = "mkdir /ldap"
 
   network_interface {
