@@ -6,9 +6,11 @@ variable "machine_type" {}
 variable "network_resource_name" {} 
 variable "firewall_resource_name" {} 
 variable "disk_resource_name" {} 
+variable "google_application_credentials" {}
 
 provider "google" {
   region = "${var.region}"
+  credentials = "${var.google_application_credentials}"
 }
 
 resource "random_id" "instance_id" {

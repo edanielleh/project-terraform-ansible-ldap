@@ -1,6 +1,7 @@
 gce_ssh_user = "<REPLACE_ME>"
 gcloud_compute_project_name = "<REPLACE_ME>"
 gce_ssh_pub_key_file = "<REPLACE_ME>"
+google_application_credentials = "<REPLACE_ME>"
 region = "us-west2-c"
 machine_type = "f1-micro"
 network_resource_name = "test-network"
