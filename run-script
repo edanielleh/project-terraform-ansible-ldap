@@ -1,0 +1,2 @@
+#!/bin/bash
+(cd terraform; terraform apply -auto-approve; sleep 1m; ansible-playbook -u edanielleh -i ../ansible/hosts ../ansible/playbook.yml)
