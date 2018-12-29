@@ -25,7 +25,10 @@ override.tf.json
 
 # Do not push configurations 
 terraform.tfvars
+ansible_vars.yml
 
+# Do not push service account key 
+*.json
 
 ### Ansible 
 

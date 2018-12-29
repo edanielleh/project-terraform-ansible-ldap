@@ -1,6 +1,28 @@
-- name: Install authconfig and vim
-  yum:
-    name:
-      - vim
-      - authconfig
-    state: present
+- name: Installing Authconfig & Dependencies
+  yum: 
+   name:
+     - authconfig
+     - openldap-clients
+     - sssd
+   state: present
+
+- name: Enabling LDAP Authentication 
+  shell: "authconfig --enableldap --enableldapauth --update"
+
+- name: Configuring SSSD with LDAP Server Name
+  shell: "authconfig --ldapserver={{ ldapserver }} --update"
+
+- name: Configuring SSSD with LDAP BaseDN
+  shell: "authconfig --ldapbasedn={{ ldapbasedn }} --update"
+
+- name: Getting CA Cert 
+  shell: "echo | openssl s_client -showcerts -connect {{ ldapserverport }} 2>&1 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > /etc/openldap/cacerts/cert.pem"
+
+- name: Rehashing the Cert 
+  shell: "cacertdir_rehash /etc/openldap/cacerts"
+
+- name: Ensuring that SSSD is Running & Enabled 
+  systemd:
+    state: started
+    enabled: yes 
+    name: sssd

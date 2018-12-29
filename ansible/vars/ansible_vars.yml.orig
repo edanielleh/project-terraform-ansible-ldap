@@ -1,0 +1,3 @@
+ldapserver: example.com 
+ldapbasedn: dc=example,dc=com
+ldapserverport: example.com:636

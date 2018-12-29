@@ -1,5 +1,0 @@
-#!/bin/bash
-echo -e "Enter your glcoud username:  \c "
-read  username
-echo "Will run ansible with: $username"
-(cd terraform; terraform apply -auto-approve; sleep 1m; ansible-playbook -u $username -i ../ansible/hosts ../ansible/playbook.yml)
